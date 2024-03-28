@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+    <Appenders>
+        <RollingFile name="LogFileAppender" filePattern="logs/event-service-%d{yyyy-MM-dd}-%i.log">
+            <PatternLayout pattern="%d{yyyy-MM-dd'T'HH:mm:ss:sss} %X{UUID} [%t] %level %c{1.2.*} app=${sys:app} version=${sys:version} hostname=${sys:hostname} %m%n"/>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="10KB"/>
+            </Policies>
+        </RollingFile>
+    </Appenders>
+    <Loggers>
+        <Root level="info">
+            <AppenderRef ref="LogFileAppender"/>
+        </Root>
+    </Loggers>
+</Configuration>

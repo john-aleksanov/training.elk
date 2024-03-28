@@ -1,0 +1,12 @@
+filebeat.inputs:
+  - type: filestream
+    id: logs
+    paths:
+      - /logs/event-service-*.log
+
+output.logstash:
+  hosts: ["logstash:5044"]
+
+
+setup.kibana:
+  host: "kibana:5601"
