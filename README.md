@@ -30,7 +30,7 @@ The project architecture consists of four main components:
 Simply clone the repository to your machine and run
 
 ```shell
-docker-compose up
+docker compose up
 ```
 
 in the root of the project's directory. This will spin up four docker containers with the four main components described above.
@@ -66,7 +66,7 @@ in Kibana. Open a web browser and navigate to http://localhost:5601, then to the
 1. Stop and remove the Docker containers:
 
 ```shell
-docker-compose down
+docker compose down
 ```
 
 2. Remove the local directories for Docker bind mounts:
