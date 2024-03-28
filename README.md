@@ -58,7 +58,8 @@ in Kibana. Open a web browser and navigate to http://localhost:5601, then to the
 - **src/main/java/**: Contains the Java application source code.
 - **src/main/resources/log4j2.xml**: Log4j2 configuration file for the Java application.
 - **./logs/**: Directory where the Java application logs are stored.
-- **./.elasticdata, ./.logstashdata, ./.filebeatdata, and ./.kibanadata**: Directories for persistent storage of Elastic stack data that will
+- **./.elasticdata, ./.logstashdata, ./.filebeatdata, and ./.kibanadata**: Directories for persistent storage of Elastic stack data that
+  will
   be created by the four components.
 
 ## Cleanup
@@ -75,3 +76,9 @@ docker compose down
 rm -rf ./.elasticdata ./.logstashdata ./.filebeatdata ./.kibanadata
 ```
 
+## Notes & Limitations
+
+It's imperative to understand that this is a mere demo project to demonstrate some Elastic stack capabilities. Due to its simplicity,
+several shortcuts have been taken and certain hardcodings have been implemented that would not be appropriate in production environments.
+One such major limitation is security. Note the use of `xpack.security.enabled: false` in [compose.yml](compose.yml). This turns off x-pack
+security features (such as authentication and TLS) and should NEVER be used in a production environment.
