@@ -1,0 +1,37 @@
+services:
+  elasticsearch:
+    image: elasticsearch:${STACK_VERSION}
+    environment:
+      discovery.type: single-node
+      xpack.security.enabled: false
+    ports:
+      - "9200:9200"
+    volumes:
+      - ./.elasticdata:/usr/share/elasticsearch/data
+
+  kibana:
+    depends_on:
+      - elasticsearch
+    image: kibana:${STACK_VERSION}
+    ports:
+      - "5601:5601"
+    volumes:
+      - ./.kibanadata:/usr/share/kibana/data
+
+  logstash:
+    depends_on:
+      - elasticsearch
+    image: logstash:${STACK_VERSION}
+    volumes:
+      - ./config/logstash.conf:/usr/share/logstash/pipeline/logstash.conf
+      - ./.logstashdata:/usr/share/logstash/data
+
+  filebeat:
+    depends_on:
+      - elasticsearch
+      - kibana
+    image: elastic/filebeat:${STACK_VERSION}
+    volumes:
+      - ./config/filebeat.yml:/usr/share/filebeat/filebeat.yml
+      - ./.filebeatdata:/usr/share/filebeat/data
+      - ./logs:/logs
